@@ -6,3 +6,4 @@ export * from "./pitch.ts";
 export * from "./drum-humanization.ts";
 export * from "./groove.ts";
 export * from "./humanize.ts";
+export * from "./tempo.ts";
