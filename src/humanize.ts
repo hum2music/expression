@@ -1,5 +1,5 @@
 import type { NoteEvent } from "@hum2music/core";
-import { applyDynamicArc, applyVelocityHumanization } from "./dynamics.ts";
+import { applyArticulation, applyDynamicArc, applyVelocityHumanization } from "./dynamics.ts";
 import { deriveHumanizeParams } from "./humanize-params.ts";
 import { applyVibrato } from "./pitch.ts";
 import { createSeededRandom, deriveSeed } from "./rng.ts";
@@ -28,6 +28,7 @@ export function humanizeMelody(notes: NoteEvent[], options: HumanizeOptions): No
   let result = notes;
   result = applySwing(result, params.swingAmount);
   result = applyTimingJitter(result, params, random);
+  result = applyArticulation(result, params.articulationGapRatio);
   result = applyVelocityHumanization(result, params, random);
   result = applyDynamicArc(result, options.humanizeAmount);
   result = applyVibrato(result, VIBRATO_DEPTH_CENTS_AT_FULL_HUMANIZE * options.humanizeAmount, options.bpm);

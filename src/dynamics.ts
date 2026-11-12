@@ -51,3 +51,26 @@ export function applyDynamicArc(notes: NoteEvent[], amount: number): NoteEvent[]
 function clampVelocity(velocity: number): number {
   return Math.min(127, Math.max(1, Math.round(velocity)));
 }
+
+/**
+ * Shapes each note's held duration toward `gapRatio` of its natural gap to
+ * the next onset (PRD §9's per-instrument articulation) — never the other
+ * way (this only ever shortens a note, it can't create overlap or stretch
+ * a note past where the next one starts). Assumes `notes` is already in
+ * onset order, true of every monophonic/chordal Arranger output in this
+ * project; a note with no following note (the last one) is left untouched.
+ */
+export function applyArticulation(notes: NoteEvent[], gapRatio: number): NoteEvent[] {
+  if (gapRatio >= 1 || notes.length === 0) return notes;
+
+  return notes.map((note, index) => {
+    const next = notes[index + 1];
+    if (!next) return note;
+
+    const gapToNextOnset = next.startBeat - note.startBeat;
+    if (gapToNextOnset <= 0) return note; // simultaneous (e.g. a chord) or out-of-order; leave untouched
+
+    const naturalDurationBeats = Math.min(note.durationBeats, gapToNextOnset);
+    return { ...note, durationBeats: naturalDurationBeats * gapRatio };
+  });
+}
