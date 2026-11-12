@@ -1,5 +1,5 @@
 import type { NoteEvent } from "@hum2music/core";
-import type { InstrumentHumanizeParams } from "./humanize-params";
+import type { InstrumentHumanizeParams } from "./humanize-params.ts";
 
 const BEATS_PER_BAR = 4;
 const POSITION_EPSILON_BEATS = 1e-6;

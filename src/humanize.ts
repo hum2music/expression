@@ -1,9 +1,9 @@
 import type { NoteEvent } from "@hum2music/core";
-import { applyDynamicArc, applyVelocityHumanization } from "./dynamics";
-import { deriveHumanizeParams } from "./humanize-params";
-import { applyVibrato } from "./pitch";
-import { createSeededRandom, deriveSeed } from "./rng";
-import { applySwing, applyTimingJitter } from "./timing";
+import { applyDynamicArc, applyVelocityHumanization } from "./dynamics.ts";
+import { deriveHumanizeParams } from "./humanize-params.ts";
+import { applyVibrato } from "./pitch.ts";
+import { createSeededRandom, deriveSeed } from "./rng.ts";
+import { applySwing, applyTimingJitter } from "./timing.ts";
 
 export interface HumanizeOptions {
   seed: number;

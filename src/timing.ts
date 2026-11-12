@@ -1,5 +1,5 @@
 import type { NoteEvent } from "@hum2music/core";
-import type { InstrumentHumanizeParams } from "./humanize-params";
+import type { InstrumentHumanizeParams } from "./humanize-params.ts";
 
 const EIGHTH_NOTE_BEATS = 0.5;
 /** At full swingAmount, an upbeat eighth note is delayed by half an eighth note (a sixteenth). */

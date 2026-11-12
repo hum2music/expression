@@ -1,4 +1,4 @@
-import type { InstrumentHumanizeParams } from "./humanize-params";
+import type { InstrumentHumanizeParams } from "./humanize-params.ts";
 
 /** A realized set of humanization values for a single drum hit (PRD §10.5). */
 export interface DrumHumanization {
